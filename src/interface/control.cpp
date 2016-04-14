@@ -1,9 +1,9 @@
 #include "control.h"
 
 RRG::Control::Control() {
-    RRG::EventManager& _eventManager = RRG::EventManager::Instance();
+    RRG::InputManager& _inputManager = RRG::InputManager::Instance();
 
-    _eventManager.Register<RRG::EventObserver::MouseMoveEvent>([this](RRG::MouseMoveEventArg arg) {
+    _inputManager.Register<RRG::InputObserver::MouseMoveEvent>([this](RRG::MouseMoveEventArg arg) {
         OnMouseMove(arg); });
 }
 

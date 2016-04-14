@@ -1,22 +1,23 @@
 #include "displaymanager.h"
-#include <SDL2/SDL.h>
-#include <SDL2/SDL_syswm.h>
 
 RRG::DisplayManager::DisplayManager() {
 }
 
 RRG::DisplayManager::~DisplayManager() {
+    Ogre::WindowEventUtilities::removeWindowEventListener(_main_window, this);
+    OGRE_DELETE _ogre_root;
 }
 
 bool RRG::DisplayManager::Initialize() {
     if (!_initialized) {
 
-        _ogre_root = new Ogre::Root("plugins.cfg", "ogre.cfg", "ogre.log");
+        _ogre_root = new Ogre::Root("/Users/rgans/Library/Developer/Xcode/DerivedData/overcome-dyotnmirvseavogkwftioindfaco/Build/Products/Debug/overcome.app/Contents/Resources/plugins.cfg", "ogre.cfg", "ogre.log");
 
         if(!(_ogre_root->restoreConfig() || _ogre_root->showConfigDialog()))
             return false;
         
         _ogre_root->setRenderSystem(_ogre_root->getAvailableRenderers().front());
+        _ogre_root->addFrameListener(this);
 
         Ogre::NameValuePairList params;
         //params["currentGLContext"] = Ogre::String("True");
@@ -30,23 +31,43 @@ bool RRG::DisplayManager::Initialize() {
         //params.insert(std::make_pair("macAPICocoaUseNSView", "true"));
         
         
-        _ogre_root->initialise(false);
-        _main_window = _ogre_root->createRenderWindow( "My sub render window", 800, 600, false, &params );
+        _main_window = _ogre_root->initialise(true, "Teste");
+        //_main_window = _ogre_root->createRenderWindow( "My sub render window", 800, 600, false, &params );
+        Ogre::WindowEventUtilities::addWindowEventListener(_main_window, this);
         
-        _main_window->setVisible(true);
+        _ogre_scene = _ogre_root->createSceneManager(Ogre::ST_GENERIC);
         
-        //_ogre_scene = _ogre_root->createSceneManager(Ogre::ST_GENERIC);
-        
-        //_ogre_camera = _ogre_scene->createCamera("MainCam");
-        //_ogre_camera->setPosition(0, 0, 80);
-        //_ogre_camera->lookAt(0, 0, -300);
-        //_ogre_camera->setNearClipDistance(5);
+        _ogre_camera = _ogre_scene->createCamera("MainCam");
+        _ogre_camera->setPosition(0, 0, 80);
+        _ogre_camera->lookAt(0, 0, -300);
+        _ogre_camera->setNearClipDistance(5);
 
-        //_ogre_view_port = _main_window->addViewport(_ogre_camera);
-        //_ogre_view_port->setClearEveryFrame(true);
-        //_ogre_view_port->setOverlaysEnabled(false);
+        _ogre_view_port = _main_window->addViewport(_ogre_camera);
+        _ogre_view_port->setClearEveryFrame(true);
+        _ogre_view_port->setOverlaysEnabled(false);
 
-        //_ogre_camera->setAspectRatio(Ogre::Real(_ogre_view_port->getActualWidth()) / Ogre::Real(_ogre_view_port->getActualHeight()));
+        _ogre_camera->setAspectRatio(Ogre::Real(_ogre_view_port->getActualWidth()) / Ogre::Real(_ogre_view_port->getActualHeight()));
+        
+//        _ogre_root->addFrameListener(this);
+//        _ogre_root->startRendering();
+        
+        
+        
+        
+        /*
+        OIS::ParamList pl;
+        size_t windowHnd = 0;
+        std::ostringstream windowHndStr;
+        
+        _main_window->getCustomAttribute("WINDOW", &windowHnd);
+        windowHndStr << windowHnd;
+        pl.insert(std::make_pair(std::string("WINDOW"), windowHndStr.str()));
+        
+        mInputManager = OIS::InputManager::createInputSystem( pl );
+        mKeyboard = static_cast<OIS::Keyboard*>(mInputManager->createInputObject( OIS::OISKeyboard, false ));
+        mMouse = static_cast<OIS::Mouse*>(mInputManager->createInputObject( OIS::OISMouse, false ));
+        */
+        
         
         _initialized = true;
     }
@@ -55,9 +76,11 @@ bool RRG::DisplayManager::Initialize() {
 }
 
 void RRG::DisplayManager::DrawImage() {
+    Ogre::WindowEventUtilities::messagePump();
+
 }
 
-void RRG::DisplayManager::DrawText() {
+void RRG::DisplayManager::DrawText(const std::string& text) {
 }
 
 void RRG::DisplayManager::DrawLine(const RRG::Frame& frame, const RRG::Color& color) {
@@ -67,7 +90,7 @@ void RRG::DisplayManager::Draw(const RRG::Frame& frame, const RRG::Color& color)
 }
 
 void RRG::DisplayManager::Clear(const RRG::Color& color) {
-    //_ogre_view_port->setBackgroundColour(Ogre::ColourValue::Black);
+    _ogre_view_port->setBackgroundColour(Ogre::ColourValue::Black);
 }
 
 void RRG::DisplayManager::ClearAll(const RRG::Color& color) {
@@ -85,12 +108,33 @@ bool RRG::DisplayManager::BeginDraw() {
 }
 
 void RRG::DisplayManager::FinishDraw() {
-    _ogre_root->renderOneFrame();
+    //_ogre_root->renderOneFrame();
     //_ogre_view_port->update();
-    _main_window->update();
+    //_main_window->update();
 }
 
 void RRG::DisplayManager::Render() {
-    //BeginDraw();
-    //FinishDraw();
+    _ogre_root->startRendering();
+    //_ogre_root->renderOneFrame();
+    //_ogre_view_port->update();
+    //_main_window->update();
+}
+
+void RRG::DisplayManager::DispatchEvent() {
+    Ogre::WindowEventUtilities::messagePump();
+
+    if(_main_window->isClosed())
+        Notify<DisplayObserver::WindowClosedEvent>(true);
+
+}
+
+bool RRG::DisplayManager::IsActive() {
+    return _main_window->isActive();
+}
+
+void RRG::DisplayManager::windowResized(Ogre::RenderWindow* rw){
+    
+}
+void RRG::DisplayManager::windowClosed(Ogre::RenderWindow* rw){
+    
 }

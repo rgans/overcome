@@ -14,7 +14,7 @@
 		7642BD3A1CBD0B70004BCD6B /* OpenGL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7642BD391CBD0B70004BCD6B /* OpenGL.framework */; };
 		7642BD3C1CBD0B70004BCD6B /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7642BD3B1CBD0B70004BCD6B /* QuartzCore.framework */; };
 		7642BD9D1CBD0C31004BCD6B /* displaymanager.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7642BD6E1CBD0C31004BCD6B /* displaymanager.cpp */; };
-		7642BD9E1CBD0C31004BCD6B /* eventmanager.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7642BD701CBD0C31004BCD6B /* eventmanager.cpp */; };
+		7642BD9E1CBD0C31004BCD6B /* inputmanager.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7642BD701CBD0C31004BCD6B /* inputmanager.cpp */; };
 		7642BD9F1CBD0C31004BCD6B /* framerate.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7642BD721CBD0C31004BCD6B /* framerate.cpp */; };
 		7642BDA01CBD0C31004BCD6B /* Input.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7642BD741CBD0C31004BCD6B /* Input.cpp */; };
 		7642BDA11CBD0C31004BCD6B /* inputdevice.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7642BD761CBD0C31004BCD6B /* inputdevice.cpp */; };
@@ -52,6 +52,13 @@
 		7642BDFB1CBD2043004BCD6B /* ogre.cfg in Resources */ = {isa = PBXBuildFile; fileRef = 7642BDC21CBD0C51004BCD6B /* ogre.cfg */; };
 		7642BDFC1CBD2043004BCD6B /* plugins.cfg in Resources */ = {isa = PBXBuildFile; fileRef = 7642BDC41CBD0C51004BCD6B /* plugins.cfg */; };
 		7642BDFD1CBD2043004BCD6B /* resources.cfg in Resources */ = {isa = PBXBuildFile; fileRef = 7642BDC51CBD0C51004BCD6B /* resources.cfg */; };
+		7642BE041CBD339E004BCD6B /* Plugin_BSPSceneManager.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7642BDFE1CBD339E004BCD6B /* Plugin_BSPSceneManager.framework */; };
+		7642BE051CBD339E004BCD6B /* Plugin_CgProgramManager.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7642BDFF1CBD339E004BCD6B /* Plugin_CgProgramManager.framework */; };
+		7642BE061CBD339E004BCD6B /* Plugin_OctreeSceneManager.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7642BE001CBD339E004BCD6B /* Plugin_OctreeSceneManager.framework */; };
+		7642BE071CBD339E004BCD6B /* Plugin_OctreeZone.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7642BE011CBD339E004BCD6B /* Plugin_OctreeZone.framework */; };
+		7642BE081CBD339E004BCD6B /* Plugin_ParticleFX.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7642BE021CBD339E004BCD6B /* Plugin_ParticleFX.framework */; };
+		7642BE091CBD339E004BCD6B /* Plugin_PCZSceneManager.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7642BE031CBD339E004BCD6B /* Plugin_PCZSceneManager.framework */; };
+		7642BE0F1CBD661D004BCD6B /* framemanager.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7642BE0D1CBD661D004BCD6B /* framemanager.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -64,8 +71,8 @@
 		7642BD3B1CBD0B70004BCD6B /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		7642BD6E1CBD0C31004BCD6B /* displaymanager.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = displaymanager.cpp; sourceTree = "<group>"; };
 		7642BD6F1CBD0C31004BCD6B /* displaymanager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = displaymanager.h; sourceTree = "<group>"; };
-		7642BD701CBD0C31004BCD6B /* eventmanager.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = eventmanager.cpp; sourceTree = "<group>"; };
-		7642BD711CBD0C31004BCD6B /* eventmanager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = eventmanager.h; sourceTree = "<group>"; };
+		7642BD701CBD0C31004BCD6B /* inputmanager.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = inputmanager.cpp; sourceTree = "<group>"; };
+		7642BD711CBD0C31004BCD6B /* inputmanager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = inputmanager.h; sourceTree = "<group>"; };
 		7642BD721CBD0C31004BCD6B /* framerate.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = framerate.cpp; sourceTree = "<group>"; };
 		7642BD731CBD0C31004BCD6B /* framerate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = framerate.h; sourceTree = "<group>"; };
 		7642BD741CBD0C31004BCD6B /* Input.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Input.cpp; sourceTree = "<group>"; };
@@ -125,6 +132,15 @@
 		7642BDF31CBD1710004BCD6B /* libboost_chrono.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libboost_chrono.dylib; path = libs/boost/libboost_chrono.dylib; sourceTree = "<group>"; };
 		7642BDF41CBD1710004BCD6B /* libboost_date_time.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libboost_date_time.dylib; path = libs/boost/libboost_date_time.dylib; sourceTree = "<group>"; };
 		7642BDF91CBD1B8F004BCD6B /* RenderSystem_GL.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = RenderSystem_GL.framework; path = ../../../../Library/Frameworks/RenderSystem_GL.framework; sourceTree = "<group>"; };
+		7642BDFE1CBD339E004BCD6B /* Plugin_BSPSceneManager.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Plugin_BSPSceneManager.framework; path = ../../../../Library/Frameworks/Plugin_BSPSceneManager.framework; sourceTree = "<group>"; };
+		7642BDFF1CBD339E004BCD6B /* Plugin_CgProgramManager.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Plugin_CgProgramManager.framework; path = ../../../../Library/Frameworks/Plugin_CgProgramManager.framework; sourceTree = "<group>"; };
+		7642BE001CBD339E004BCD6B /* Plugin_OctreeSceneManager.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Plugin_OctreeSceneManager.framework; path = ../../../../Library/Frameworks/Plugin_OctreeSceneManager.framework; sourceTree = "<group>"; };
+		7642BE011CBD339E004BCD6B /* Plugin_OctreeZone.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Plugin_OctreeZone.framework; path = ../../../../Library/Frameworks/Plugin_OctreeZone.framework; sourceTree = "<group>"; };
+		7642BE021CBD339E004BCD6B /* Plugin_ParticleFX.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Plugin_ParticleFX.framework; path = ../../../../Library/Frameworks/Plugin_ParticleFX.framework; sourceTree = "<group>"; };
+		7642BE031CBD339E004BCD6B /* Plugin_PCZSceneManager.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Plugin_PCZSceneManager.framework; path = ../../../../Library/Frameworks/Plugin_PCZSceneManager.framework; sourceTree = "<group>"; };
+		7642BE0D1CBD661D004BCD6B /* framemanager.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = framemanager.cpp; sourceTree = "<group>"; };
+		7642BE0E1CBD661D004BCD6B /* framemanager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = framemanager.h; sourceTree = "<group>"; };
+		76F00C481CC0293C00DDD361 /* OIS.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OIS.framework; path = ../../../../Library/Frameworks/OIS.framework; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -132,6 +148,12 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7642BE041CBD339E004BCD6B /* Plugin_BSPSceneManager.framework in Frameworks */,
+				7642BE051CBD339E004BCD6B /* Plugin_CgProgramManager.framework in Frameworks */,
+				7642BE061CBD339E004BCD6B /* Plugin_OctreeSceneManager.framework in Frameworks */,
+				7642BE071CBD339E004BCD6B /* Plugin_OctreeZone.framework in Frameworks */,
+				7642BE081CBD339E004BCD6B /* Plugin_ParticleFX.framework in Frameworks */,
+				7642BE091CBD339E004BCD6B /* Plugin_PCZSceneManager.framework in Frameworks */,
 				7642BDFA1CBD1B8F004BCD6B /* RenderSystem_GL.framework in Frameworks */,
 				7642BDF51CBD1710004BCD6B /* libboost_chrono.dylib in Frameworks */,
 				7642BDF61CBD1710004BCD6B /* libboost_date_time.dylib in Frameworks */,
@@ -171,6 +193,13 @@
 		7642BD301CBD0B70004BCD6B /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				76F00C481CC0293C00DDD361 /* OIS.framework */,
+				7642BDFE1CBD339E004BCD6B /* Plugin_BSPSceneManager.framework */,
+				7642BDFF1CBD339E004BCD6B /* Plugin_CgProgramManager.framework */,
+				7642BE001CBD339E004BCD6B /* Plugin_OctreeSceneManager.framework */,
+				7642BE011CBD339E004BCD6B /* Plugin_OctreeZone.framework */,
+				7642BE021CBD339E004BCD6B /* Plugin_ParticleFX.framework */,
+				7642BE031CBD339E004BCD6B /* Plugin_PCZSceneManager.framework */,
 				7642BDF91CBD1B8F004BCD6B /* RenderSystem_GL.framework */,
 				7642BDF31CBD1710004BCD6B /* libboost_chrono.dylib */,
 				7642BDF41CBD1710004BCD6B /* libboost_date_time.dylib */,
@@ -191,13 +220,13 @@
 			isa = PBXGroup;
 			children = (
 				7642BD6D1CBD0C31004BCD6B /* common */,
+				7642BD911CBD0C31004BCD6B /* interface */,
 				7642BD8B1CBD0C31004BCD6B /* game.cpp */,
 				7642BD8C1CBD0C31004BCD6B /* game.h */,
 				7642BD8D1CBD0C31004BCD6B /* gamemanager.cpp */,
 				7642BD8E1CBD0C31004BCD6B /* gamemanager.h */,
 				7642BD8F1CBD0C31004BCD6B /* global.h */,
 				7642BD901CBD0C31004BCD6B /* global.pch */,
-				7642BD911CBD0C31004BCD6B /* interface */,
 				7642BD981CBD0C31004BCD6B /* logincontroller.cpp */,
 				7642BD991CBD0C31004BCD6B /* logincontroller.h */,
 				7642BD9A1CBD0C31004BCD6B /* main.mm */,
@@ -211,10 +240,12 @@
 		7642BD6D1CBD0C31004BCD6B /* common */ = {
 			isa = PBXGroup;
 			children = (
+				7642BE0D1CBD661D004BCD6B /* framemanager.cpp */,
+				7642BE0E1CBD661D004BCD6B /* framemanager.h */,
 				7642BD6E1CBD0C31004BCD6B /* displaymanager.cpp */,
 				7642BD6F1CBD0C31004BCD6B /* displaymanager.h */,
-				7642BD701CBD0C31004BCD6B /* eventmanager.cpp */,
-				7642BD711CBD0C31004BCD6B /* eventmanager.h */,
+				7642BD701CBD0C31004BCD6B /* inputmanager.cpp */,
+				7642BD711CBD0C31004BCD6B /* inputmanager.h */,
 				7642BD721CBD0C31004BCD6B /* framerate.cpp */,
 				7642BD731CBD0C31004BCD6B /* framerate.h */,
 				7642BD741CBD0C31004BCD6B /* Input.cpp */,
@@ -447,9 +478,10 @@
 				7642BDA81CBD0C31004BCD6B /* windowsinput.cpp in Sources */,
 				7642BDA21CBD0C31004BCD6B /* interval.cpp in Sources */,
 				7642BDA31CBD0C31004BCD6B /* linuxinput.cpp in Sources */,
-				7642BD9E1CBD0C31004BCD6B /* eventmanager.cpp in Sources */,
+				7642BD9E1CBD0C31004BCD6B /* inputmanager.cpp in Sources */,
 				7642BDAA1CBD0C31004BCD6B /* gamemanager.cpp in Sources */,
 				7642BDAE1CBD0C31004BCD6B /* logincontroller.cpp in Sources */,
+				7642BE0F1CBD661D004BCD6B /* framemanager.cpp in Sources */,
 				7642BD9D1CBD0C31004BCD6B /* displaymanager.cpp in Sources */,
 				7642BDA11CBD0C31004BCD6B /* inputdevice.cpp in Sources */,
 				7642BDA01CBD0C31004BCD6B /* Input.cpp in Sources */,
@@ -560,6 +592,7 @@
 				7642BD6A1CBD0B71004BCD6B /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

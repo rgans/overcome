@@ -2,7 +2,7 @@
 #define RRG_CONTROL_H
 
 #include "view.h"
-#include "../common/eventmanager.h"
+#include "../common/inputmanager.h"
 
 namespace RRG {
 

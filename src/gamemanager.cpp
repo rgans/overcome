@@ -15,7 +15,7 @@ bool RRG::GameManager::Initialize() {
     return _initialized;
 }
 
-void RRG::GameManager::Update() {
-    RRG::LoginController _currentController;
-    _currentController.Render();
+void RRG::GameManager::Update(double time) {
+    //RRG::LoginController _currentController;
+    //_currentController.Render();
 }

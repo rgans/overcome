@@ -3,6 +3,7 @@
 
 #include "util/observer.h"
 #include <Ogre/Ogre.h>
+#include <OIS/OIS.h>
 
 const int SCREEN_WIDTH = 640;
 const int SCREEN_HEIGHT = 480;
@@ -33,15 +34,16 @@ namespace RRG {
 
     struct DisplayObserver {
 
-        enum {
-            MouseMoveEvent, MouseClickEvent, KeyDownEvent, KeyUpEvent, KeyPressEvent
-        };
+        enum { WindowClosedEvent, WindowResizedEvent, WindowMovedEvent };
         using ObserverTable = std::tuple<
-                Observer<void()> //MouseMoveEvent
+                Observer<void(bool force_close)> //WindowClosedEvent
         >;
     };
 
-    class DisplayManager : public Observable<DisplayObserver> {
+    class DisplayManager : public Ogre::FrameListener,
+    public Ogre::WindowEventListener,
+    public Observable<DisplayObserver> {
+
     public:
 
         static DisplayManager& Instance() {
@@ -55,7 +57,7 @@ namespace RRG {
         bool Initialize();
 
         void DrawImage();
-        void DrawText();
+        void DrawText(const std::string& text);
         void DrawLine(const Frame& frame, const Color& color);
         void Draw(const Frame& frame, const Color& color);
         void Clear(const Color& color);
@@ -67,6 +69,9 @@ namespace RRG {
         void Render();
         bool BeginDraw();
         void FinishDraw();
+
+        void DispatchEvent();
+        bool IsActive();
 
     private:
         DisplayManager();
@@ -88,6 +93,14 @@ namespace RRG {
         Ogre::SceneManager* _ogre_scene;
         Ogre::Camera* _ogre_camera;
         Ogre::Viewport* _ogre_view_port;
+        
+        OIS::InputManager* mInputManager;
+        OIS::Mouse* mMouse;
+        OIS::Keyboard* mKeyboard;
+        
+        
+        void windowResized(Ogre::RenderWindow* rw) override;
+        void windowClosed(Ogre::RenderWindow* rw) override;
     };
 
 }

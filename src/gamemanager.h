@@ -28,7 +28,7 @@ namespace RRG {
         void operator=(GameManager const&) = delete;
 
         bool Initialize();
-        void Update();
+        void Update(double time);
 
     private:
         GameManager();

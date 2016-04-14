@@ -3,8 +3,8 @@
 
 #include "gamemanager.h"
 #include "common/displaymanager.h"
-#include "common/eventmanager.h"
-#include "common/framerate.h"
+#include "common/inputmanager.h"
+#include "common/framemanager.h"
 #include <iostream>
 
 namespace RRG {
@@ -28,8 +28,9 @@ namespace RRG {
 
         bool _quit = false;
         
-        RRG::EventManager& _eventManager = RRG::EventManager::Instance();
+        RRG::InputManager& _inputManager = RRG::InputManager::Instance();
         RRG::DisplayManager& _displayManager = RRG::DisplayManager::Instance();
+        RRG::FrameManager& _frameManager = RRG::FrameManager::Instance();
         RRG::GameManager& _gameManager = RRG::GameManager::Instance();
     };
 

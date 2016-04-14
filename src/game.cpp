@@ -11,13 +11,11 @@ RRG::Game::~Game() {
 
 bool RRG::Game::Initialize()
 {
-    if (!_eventManager.Initialize() || !_displayManager.Initialize() || !_gameManager.Initialize())
+    if (!_inputManager.Initialize() || !_displayManager.Initialize() || !_frameManager.Initialize() || !_gameManager.Initialize())
         return false;
     
-    _eventManager.Register<RRG::EventObserver::CloseEvent>([this](bool force_close) {
-        _quit = OnClose(force_close); });
-    _eventManager.Register<RRG::EventObserver::MouseMoveEvent>([this](RRG::MouseMoveEventArg arg) {
-        OnMouseMove(arg); });
+    _displayManager.Register<RRG::DisplayObserver::WindowClosedEvent>([this](bool force_close) { _quit = OnClose(force_close); });
+    _inputManager.Register<RRG::InputObserver::MouseMoveEvent>([this](RRG::MouseMoveEventArg arg) { OnMouseMove(arg); });
 
     return true;
 }
@@ -27,33 +25,22 @@ int RRG::Game::Run(int argc, char* args[]) {
     if(!Initialize())
         return 1;
     
-    RRG::FrameRate fps;
-    RRG::Interval interval;
-    RRG::Interval tempo;
-    int sec = 0;
-    int re = 0;
-    unsigned long long rate = (1.f / 60.f)*1000;
+    double timeSinceLastFrame = 0;
+    double startTime = 0;
     while (!_quit) {
-        _eventManager.DispatchEvent();
-        
-        if (interval.value() > rate) {
-            if (_displayManager.BeginDraw())
-                _gameManager.Update();
-            //            _displayManager.DrawText(std::to_string(fps.Get()));
-            _displayManager.FinishDraw();
-            interval = RRG::Interval();
-            re++;
-            fps.Update();
-        }
-        
-        //std::cout<<"Fps: "<<fps.Get()<<'\n';
-        if (tempo.value() > 1000) {
-            sec++;
-            std::cout << "Secs: " << sec << '\n';
-            std::cout << "Renders: " << re << '\n';
-            std::cout << "Fps: " << fps.Get() << '\n';
-            tempo = RRG::Interval();
-            re = 0;
+        _displayManager.DispatchEvent();
+        _inputManager.DispatchEvent();
+        if(_displayManager.IsActive()){
+            
+            startTime = _frameManager.GetTime();
+
+            _gameManager.Update(timeSinceLastFrame);
+            _displayManager.Render();
+            
+            timeSinceLastFrame = _frameManager.GetTime() - startTime;
+            
+        } else{
+            sleep(1);
         }
     }
     
